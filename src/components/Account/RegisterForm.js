@@ -5,6 +5,7 @@ import { validateEmail } from "../../utils/validations";
 import { size, isEmpty } from "lodash";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
+import Loading from "../Loading";
 
 function defaultForm() {
   return {
@@ -62,7 +63,7 @@ export default function RegisterForm(props) {
   };
   //console.log(formData);
   return (
-    <View>
+    
       <View style={styles.formContainer}>
         <Input
           placeholder="Correo electronico"
@@ -113,8 +114,9 @@ export default function RegisterForm(props) {
           buttonStyle={styles.btnRegister}
           onPress={hadleSubmit}
         />
+        <Loading isVisible={loading} text='Creando cuenta' />
       </View>
-    </View>
+    
   );
 }
 

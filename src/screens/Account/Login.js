@@ -1,30 +1,27 @@
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { Divider } from 'react-native-elements';
+import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { Divider } from "react-native-elements";
+import LoginForm from "../../components/Account/LoginForm";
 
-
-const Login = () => {
+export default function Login() {
   return (
-   <ScrollView>
-     <Image 
-     source={require('../../../assets/img/logo.png')} 
-     resizeMode='contain'
-     style={styles.logo}
-     />
-     <View style={styles.viewContainer}>
-       <Text >
-          Login
-       </Text>
-       <CreateAccount />
-
-     </View>
-     <Divider style={styles.divider}/>
-   </ScrollView>
+    <ScrollView>
+      <Image
+        source={require("../../../assets/img/logo.png")}
+        resizeMode="contain"
+        style={styles.logo}
+      />
+      <View style={styles.viewContainer}>
+        <LoginForm />
+        <CreateAccount />
+      </View>
+      <Divider style={styles.divider} />
+    </ScrollView>
   );
 };
 
-export default Login;
+
 
 function CreateAccount() {
   const navigation = useNavigation();
@@ -63,7 +60,5 @@ const styles = StyleSheet.create({
   },
   divider: {
     margin: 50,
-   
-    
   },
 });

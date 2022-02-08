@@ -8,9 +8,12 @@ import { getAuth } from "firebase/auth";
 const Account = () => {
   const [login, setLogin] = useState(null);
 
+  //console.log([login, 'Estado de login']);
+
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
+    console.log(user);
     !user ? setLogin(false) : setLogin(true);
   }, []);
 
