@@ -1,9 +1,8 @@
-import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import UserGuest from "./Account/UserGuest";
 import UserLogged from "./Account/UserLogged";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Account = () => {
   const [login, setLogin] = useState(null);
@@ -12,9 +11,17 @@ const Account = () => {
 
   useEffect(() => {
     const auth = getAuth();
-    const user = auth.currentUser;
-    console.log(user);
-    !user ? setLogin(false) : setLogin(true);
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        //const uid = user.uid;
+        setLogin(false);
+      } else {
+        // User is signed out
+        setLogin(true);
+      }
+    });
   }, []);
 
   if (login === null) return <Loading isVisible={true} text="Cargando..." />;
